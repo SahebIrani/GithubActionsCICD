@@ -20,3 +20,7 @@ jobs:
       run: dotnet build --configuration Release      
     - name: Run tests
       run: dotnet test --configuration Release
+    - name: Build NuGet Package
+      run: dotnet pack ./Tweetbook/Tweetbook.csproj --configuration Release
+    - name: Deploy NuGet Package
+      run: dotnet nuget push ./Tweetbook/bin/Release/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
