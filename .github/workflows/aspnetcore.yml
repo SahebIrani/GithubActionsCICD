@@ -1,6 +1,28 @@
-name: ASP.NET Core CI 9-29-2019 8:45 AM # dotnet core - build
+name: ASP.NET Core CI 9-29-2019 8:45 AM
 
 on: [push]
+
+jobs:
+  build-test-publish:
+runs-on: ubuntu-18.04
+
+steps:
+  - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.0.100 
+        
+    - name: Build with dotnet
+      run: dotnet build --configuration Release      
+    - name: Run tests 
+      run: dotnet test --configuration Release t /p:CollectCoverage=true
+    - name: Publishing the API Web
+      run: dotnet publish -o appoutput /home/runner/work/GithubActionsCICD/GithubActionsCICD/Tweetbook.Sdk.Sample/Tweetbook.Sdk.Sample.csproj
+
+
+#name: ASP.NET Core CI 9-29-2019 8:45 AM # dotnet core - build
+
+#on: [push]
 #on: 
   #push:
     #branches:
@@ -9,10 +31,10 @@ on: [push]
     #branches:
     #- master      # Eventos de Pull Request sobre el branch 'master'
 
-jobs:
-  build-test-publish:
+#jobs:
+  #build-test-publish:
   
-    runs-on: ubuntu-18.04 #windows-latest 
+    #runs-on: ubuntu-18.04 #windows-latest 
     #runs-on: ${{ matrix.os }}
     #strategy:
       #matrix:
@@ -21,25 +43,25 @@ jobs:
         # dotnet: [ '3.0.100' ,'2.2.103', '3.0.100-preview9-014004', '4.5.1' ] # SDK Version to use.      
         # name: Dotnet ${{ matrix.dotnet }} sample          
         
-    steps:
+    #steps:
     # - uses: actions/checkout@master
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.0.100  # ${{ matrix.dotnet }}  
+    #- name: Setup .NET Core
+      #uses: actions/setup-dotnet@v1
+      #with:
+       # dotnet-version: 3.0.100  # ${{ matrix.dotnet }}  
         #description: 'SDK version to use. E.g. 3.0.100 ,2.2.103, 3.0.100-preview9-014004, 4.5.1 ,'
   
         
     #steps:
     # - uses: actions/checkout@master
-    - name: Setup .NET Core
-      uses: actions/checkout@master
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '2.2.103'  # ${{ matrix.dotnet }}  3.0.100
+    #- name: Setup .NET Core
+      #uses: actions/checkout@master
+      #uses: actions/setup-dotnet@v1
+      #with:
+        #dotnet-version: '2.2.103'  # ${{ matrix.dotnet }}  3.0.100
         #description: 'SDK version to use. E.g. 3.0.100 ,2.2.103, 3.0.100-preview9-014004, 4.5.1 ,'
-    - name: Publishing the API Web
-    - run: dotnet publish -o appoutput /home/runner/work/GithubActionsCICD/GithubActionsCICD/Tweetbook.Sdk.Sample/Tweetbook.Sdk.Sample.csproj
+   # - name: Publishing the API Web
+   # - run: dotnet publish -o appoutput /home/runner/work/GithubActionsCICD/GithubActionsCICD/Tweetbook.Sdk.Sample/Tweetbook.Sdk.Sample.csproj
         
         #- name: test variables
         #run: echo ${GITHUB_WORKSPACE}
