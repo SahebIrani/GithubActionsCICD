@@ -25,15 +25,15 @@ jobs:
         #- name: test variables
         #run: echo ${GITHUB_WORKSPACE}
         
-    - name: Build with dotnet
-      run: |
-        echo ls
-        ls
-        dotnet build --configuration Release
-    - name: Test with dotnet
-      run: dotnet test --configuration Release
-    - name: Package everything up with dotnet
-      run: dotnet publish /home/runner/work/GithubActionsCICD/GithubActionsCICD/Tweetbook/Tweetbook.csproj --configuration Release 
+    #- name: Build with dotnet
+     # run: |
+       # echo ls
+        #ls
+        #dotnet build --configuration Release
+    #- name: Test with dotnet
+      #run: dotnet test --configuration Release
+    #- name: Package everything up with dotnet
+      #run: dotnet publish /home/runner/work/GithubActionsCICD/GithubActionsCICD/Tweetbook/Tweetbook.csproj --configuration Release 
     #- name: Upload artifact
     #uses: actions/upload-artifact@v1.0.0
     #- name: publish build artifacts back to GitHub
@@ -44,15 +44,15 @@ jobs:
         
         #/home/runner/work/my-repo-name/my-repo-name
     
-    #- name: Build with dotnet
-      #run: dotnet build --configuration Release      
-    #- name: Run tests #Unit Tests
-      #run: dotnet test --configuration Release t /p:CollectCoverage=true
-    # - name: Running MS Tests with Test Coverage
+    - name: Build with dotnet
+      run: dotnet build --configuration Release      
+    - name: Run tests #Unit Tests
+      run: dotnet test --configuration Release t /p:CollectCoverage=true
+     #- name: Running MS Tests with Test Coverage
       # run: dotnet test /p:CollectCoverage=true
-    #- name: Publishing the API Web
+    - name: Publishing the API Web
       #run: dotnet publish --configuration Release      
-      # run: dotnet publish --configuration Release --output ./Tweetbook-output ./Tweetbook/Tweetbook.csproj
+      run: dotnet publish /home/runner/work/GithubActionsCICD/GithubActionsCICD/Tweetbook/Tweetbook.csproj
       #run: dotnet publish --configuration Release --output ./tweetbook-output /home/runner/work/src/Tweetbook/Tweetbook.csproj     
  
     #- name: Deploy to Azure
