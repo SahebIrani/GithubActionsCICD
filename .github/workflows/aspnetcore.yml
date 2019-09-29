@@ -1,19 +1,19 @@
-name: ASP.NET Core CI 9-29-2019 09:35 AM 
+name: ASP.NET Core CI 9-29-2019 09:38 AM 
 on: [push]
 jobs:
   build-and-test:
-    runs-on: ubuntu-18.04 
+    runs-on: windows-latest
     steps:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.0.100 
-    - name: Build with dotnet
-      run: dotnet build --configuration Release      
-    - name: Run tests 
-      run: dotnet test --configuration Release t /p:CollectCoverage=true
+    #- name: Build with dotnet
+      #run: dotnet build --configuration Release      
+    #- name: Run tests 
+      #run: dotnet test --configuration Release t /p:CollectCoverage=true
     - name: Publishing the API Web
-      run: dotnet publish -o appoutput /home/runner/work/GithubActionsCICD/GithubActionsCICD/Tweetbook.Sdk.Sample/Tweetbook.Sdk.Sample.csproj
+    - run: dotnet publish /home/runner/work/GithubActionsCICD/GithubActionsCICD/Tweetbook/Tweetbook.csproj --configuration Release
 
 #name: ASP.NET Core CI 9-29-2019 8:45 AM # dotnet core - build
 
