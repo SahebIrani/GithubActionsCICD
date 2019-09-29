@@ -1,18 +1,18 @@
 name: ASP.NET Core CI 9-29-2019 8:45 AM # dotnet core - build
 
-#on: [push]
-on: 
-  push:
-    branches:
-    - master      # Eventos de Push sobre el branch 'master'
-  pull_request:
-    branches:
-    - master      # Eventos de Pull Request sobre el branch 'master'
+on: [push]
+#on: 
+  #push:
+    #branches:
+    #- master      # Eventos de Push sobre el branch 'master'
+  #pull_request:
+    #branches:
+    #- master      # Eventos de Pull Request sobre el branch 'master'
 
 jobs:
   build-test-publish:
   
-  runs-on: ubuntu-18.04 #windows-latest 
+  runs-on: 'windows-latest' #'ubuntu-18.04' #windows-latest 
     #runs-on: ${{ matrix.os }}
     #strategy:
       #matrix:
