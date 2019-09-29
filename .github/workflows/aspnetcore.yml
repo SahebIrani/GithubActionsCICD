@@ -1,4 +1,4 @@
-name: ASP.NET Core CI 9-29-2019 8:06 AM # dotnet core - build
+name: ASP.NET Core CI 9-29-2019 8:10 AM # dotnet core - build
 
 on: [push]
 
@@ -21,16 +21,21 @@ jobs:
       with:
         dotnet-version: 3.0.100  # ${{ matrix.dotnet }}  
         #description: 'SDK version to use. E.g. 3.0.100 ,2.2.103, 3.0.100-preview9-014004, 4.5.1 ,'
-    - name: Publishing the API Web
-      run: dotnet publish --configuration Release --output ./Tweetbook-output ./Tweetbook/Tweetbook.csproj
-      #run: dotnet publish --configuration Release --output ./tweetbook-output /home/runner/work/src/Tweetbook/Tweetbook.csproj        
+
+      #dotnet build –configuration Release
+      #dotnet test –configuration Release
+      #dotnet publish –configuration Release
+        
     - name: Build with dotnet
       run: dotnet build --configuration Release      
     - name: Run tests #Unit Tests
       run: dotnet tes --configuration Release t /p:CollectCoverage=true
     # - name: Running MS Tests with Test Coverage
       # run: dotnet test /p:CollectCoverage=true
- 
+     - name: Publishing the API Web
+      run: dotnet publish –configuration Release
+      #run: dotnet publish --configuration Release --output ./tweetbook-output /home/runner/work/src/Tweetbook/Tweetbook.csproj  
+      
     #- name: Deploy to Azure
       #uses: azure/appservice-actions/webapp@master
       #with: 
