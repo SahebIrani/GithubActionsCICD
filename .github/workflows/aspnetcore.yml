@@ -29,7 +29,7 @@ jobs:
       run: |
         echo ls
         ls
-        dotnet build Tweetbook/Tweetbook.csproj --configuration Release
+        dotnet build --configuration Release
     - name: Test with dotnet
       run: dotnet test Tweetbook.IntegrationTests/Tweetbook.IntegrationTests.csproj --configuration Release
     - name: Package everything up with dotnet
