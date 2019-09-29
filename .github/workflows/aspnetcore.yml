@@ -33,7 +33,7 @@ jobs:
     - name: Test with dotnet
       run: dotnet test --configuration Release
     - name: Package everything up with dotnet
-      run: dotnet publish --configuration Release --output ./Tweetbook-output /home/runner/work/GithubActionsCICD/GithubActionsCICD/Tweetbook/Tweetbook.csproj
+      run: dotnet publish /home/runner/work/GithubActionsCICD/GithubActionsCICD/Tweetbook/Tweetbook.csproj --configuration Release 
     #- name: Upload artifact
     #uses: actions/upload-artifact@v1.0.0
     #- name: publish build artifacts back to GitHub
