@@ -22,8 +22,8 @@ jobs:
         dotnet-version: 3.0.100  # ${{ matrix.dotnet }}  
         #description: 'SDK version to use. E.g. 3.0.100 ,2.2.103, 3.0.100-preview9-014004, 4.5.1 ,'
         
-        - name: test variables
-        run: echo ${GITHUB_WORKSPACE}
+        #- name: test variables
+        #run: echo ${GITHUB_WORKSPACE}
         
     - name: Build with dotnet
       run: |
