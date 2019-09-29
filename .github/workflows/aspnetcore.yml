@@ -1,4 +1,4 @@
-name: ASP.NET Core CI 9-29-2019 7:31 AM # dotnet core - build
+name: ASP.NET Core CI 9-29-2019 7:33 AM # dotnet core - build
 
 on: [push]
 
@@ -24,11 +24,11 @@ jobs:
     - name: Build with dotnet
       run: dotnet build --configuration Release      
     - name: Run tests #Unit Tests
-      run: dotnet test /p:CollectCoverage=true --configuration Release  
+      run: dotnet tes --configuration Release t /p:CollectCoverage=true
     # - name: Running MS Tests with Test Coverage
       # run: dotnet test /p:CollectCoverage=true
     - name: Publishing the API Web
-      run: dotnet publish --configuration Release --output ././Tweetbook-output ././Tweetbook/Tweetbook.csproj
+      run: dotnet publish --configuration Release --output ./Tweetbook-output ./Tweetbook/Tweetbook.csproj
     #- name: Deploy to Azure
       #uses: azure/appservice-actions/webapp@master
       #with: 
