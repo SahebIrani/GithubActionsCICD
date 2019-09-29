@@ -1,11 +1,23 @@
 name: ASP.NET Core CI 9-29-2019 8:45 AM # dotnet core - build
 
-on: [push]
+#on: [push]
+on: 
+  push:
+    branches:
+    - master      # Eventos de Push sobre el branch 'master'
+  pull_request:
+    branches:
+    - master      # Eventos de Pull Request sobre el branch 'master'
 
 jobs:
   build-test-publish:
   
-    runs-on: ubuntu-18.04 #windows-latest 
+   runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+  
+  #runs-on: ubuntu-18.04 #windows-latest 
     #runs-on: ${{ matrix.os }}
     #strategy:
       #matrix:
@@ -17,9 +29,10 @@ jobs:
     steps:
     # - uses: actions/checkout@master
     - name: Setup .NET Core
+      uses: actions/checkout@master
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.0.100  # ${{ matrix.dotnet }}  
+        dotnet-version: 2.2.103  # ${{ matrix.dotnet }}  3.0.100
         #description: 'SDK version to use. E.g. 3.0.100 ,2.2.103, 3.0.100-preview9-014004, 4.5.1 ,'
         
         #- name: test variables
@@ -43,16 +56,18 @@ jobs:
         #path: Tweetbook/bin/Release/netcoreapp3.0/publish
         
         #/home/runner/work/my-repo-name/my-repo-name
+        
+    - run: dotnet publish -o appoutput /home/runner/work/GithubActionsCICD/GithubActionsCICD/Tweetbook.Sdk.Sample/Tweetbook.Sdk.Sample.csproj
     
-    - name: Build with dotnet
-      run: dotnet build --configuration Release      
-    - name: Run tests #Unit Tests
-      run: dotnet test --configuration Release t /p:CollectCoverage=true
+    #- name: Build with dotnet
+      #run: dotnet build --configuration Release      
+    #- name: Run tests #Unit Tests
+      #run: dotnet test --configuration Release t /p:CollectCoverage=true
      #- name: Running MS Tests with Test Coverage
       # run: dotnet test /p:CollectCoverage=true
-    - name: Publishing the API Web
+    #- name: Publishing the API Web
       #run: dotnet publish --configuration Release      
-      run: dotnet publish /home/runner/work/GithubActionsCICD/GithubActionsCICD/Tweetbook/Tweetbook.csproj
+      #run: dotnet publish /home/runner/work/GithubActionsCICD/GithubActionsCICD/Tweetbook/Tweetbook.csproj
       #run: dotnet publish --configuration Release --output ./tweetbook-output /home/runner/work/src/Tweetbook/Tweetbook.csproj     
  
     #- name: Deploy to Azure
