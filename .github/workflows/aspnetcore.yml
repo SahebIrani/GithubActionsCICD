@@ -30,7 +30,7 @@ jobs:
         #description: 'SDK version to use. E.g. 3.0.100 ,2.2.103, 3.0.100-preview9-014004, 4.5.1 ,'
   
         
-    steps:
+    #steps:
     # - uses: actions/checkout@master
     - name: Setup .NET Core
       uses: actions/checkout@master
