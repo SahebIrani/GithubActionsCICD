@@ -1,37 +1,19 @@
-name: ASP.NET Core CI 9-29-2019 7:51 AM # dotnet core - build
-
+name: ASP.NET Core CI 9-29-2019 09:35 AM 
 on: [push]
-
 jobs:
   build-and-test:
-  
-    runs-on: ubuntu-18.04 #windows-latest 
-    #runs-on: ${{ matrix.os }}
-    #strategy:
-      #matrix:
-        #os: 'windows-latest'
-        #os: [ubuntu-latest, windows-latest, macOS-latest]
-        # dotnet: [ '3.0.100' ,'2.2.103', '3.0.100-preview9-014004', '4.5.1' ] # SDK Version to use.      
-        # name: Dotnet ${{ matrix.dotnet }} sample          
-        
+    runs-on: ubuntu-18.04 
     steps:
-    # - uses: actions/checkout@master
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.0.100  # ${{ matrix.dotnet }}  
-        #description: 'SDK version to use. E.g. 3.0.100 ,2.2.103, 3.0.100-preview9-014004, 4.5.1 ,'
+        dotnet-version: 3.0.100 
     - name: Build with dotnet
-      run: dotnet build ././Tweetbook/Tweetbook.csproj --configuration Release      
-    - name: Run tests #Unit Tests
-      run: dotnet tes --configuration Release t /p:CollectCoverage=true
-    # - name: Running MS Tests with Test Coverage
-      # run: dotnet test /p:CollectCoverage=true
+      run: dotnet build --configuration Release      
+    - name: Run tests 
+      run: dotnet test --configuration Release t /p:CollectCoverage=true
     - name: Publishing the API Web
-      #run: dotnet publish --configuration Release --output ./Tweetbook-output ./Tweetbook/Tweetbook.csproj
-      #run: dotnet publish --configuration Release --output ./tweetbook-output #./Tweetbook/Tweetbook.csproj
-      run: dotnet publish ./Tweetbook/Tweetbook.csproj
-
+      run: dotnet publish -o appoutput /home/runner/work/GithubActionsCICD/GithubActionsCICD/Tweetbook.Sdk.Sample/Tweetbook.Sdk.Sample.csproj
 
 #name: ASP.NET Core CI 9-29-2019 8:45 AM # dotnet core - build
 
