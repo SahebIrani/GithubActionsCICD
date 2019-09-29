@@ -33,7 +33,7 @@ jobs:
     # - name: Running MS Tests with Test Coverage
       # run: dotnet test /p:CollectCoverage=true
      - name: Publishing the API Web
-      run: dotnet publish –configuration Release
+      run: dotnet publish --configuration Release
       #run: dotnet publish --configuration Release --output ./tweetbook-output /home/runner/work/src/Tweetbook/Tweetbook.csproj  
       
     #- name: Deploy to Azure
