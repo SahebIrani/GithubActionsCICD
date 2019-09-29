@@ -1,4 +1,4 @@
-name: ASP.NET Core CI 9-29-2019 8:37 AM # dotnet core - build
+name: ASP.NET Core CI 9-29-2019 8:45 AM # dotnet core - build
 
 on: [push]
 
@@ -31,16 +31,18 @@ jobs:
         ls
         dotnet build --configuration Release
     - name: Test with dotnet
-      run: dotnet test Tweetbook.IntegrationTests/Tweetbook.IntegrationTests.csproj --configuration Release
+      run: dotnet test --configuration Release
     - name: Package everything up with dotnet
-      run: dotnet publish Tweetbook/Tweetbook.csproj --configuration Release
+      run: dotnet publish --configuration Release --output ./Tweetbook-output /home/runner/work/GithubActionsCICD/GithubActionsCICD/Tweetbook/Tweetbook.csproj
     #- name: Upload artifact
     #uses: actions/upload-artifact@v1.0.0
-    - name: publish build artifacts back to GitHub
-      uses: actions/upload-artifact@master
-      with:
-        name: webapp
-        path: Tweetbook/bin/Release/netcoreapp3.0/publish
+    #- name: publish build artifacts back to GitHub
+      #uses: actions/upload-artifact@master
+      #with:
+        #name: webapp
+        #path: Tweetbook/bin/Release/netcoreapp3.0/publish
+        
+        #/home/runner/work/my-repo-name/my-repo-name
     
     #- name: Build with dotnet
       #run: dotnet build --configuration Release      
