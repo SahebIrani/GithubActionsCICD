@@ -22,7 +22,7 @@ jobs:
         dotnet-version: 3.0.100  # ${{ matrix.dotnet }}  
         #description: 'SDK version to use. E.g. 3.0.100 ,2.2.103, 3.0.100-preview9-014004, 4.5.1 ,'
     - name: Build with dotnet
-      run: dotnet build --configuration Release      
+      run: dotnet build ./Tweetbook/Tweetbook.csproj --configuration Release      
     - name: Run tests #Unit Tests
       run: dotnet tes --configuration Release t /p:CollectCoverage=true
     # - name: Running MS Tests with Test Coverage
@@ -30,7 +30,7 @@ jobs:
     - name: Publishing the API Web
       #run: dotnet publish --configuration Release --output ./Tweetbook-output ./Tweetbook/Tweetbook.csproj
       #run: dotnet publish --configuration Release --output ./tweetbook-output #./Tweetbook/Tweetbook.csproj
-      run: dotnet publish 
+      run: dotnet publish ./Tweetbook/Tweetbook.csproj
 
     #- name: Deploy to Azure
       #uses: azure/appservice-actions/webapp@master
