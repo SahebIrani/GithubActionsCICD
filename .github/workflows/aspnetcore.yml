@@ -24,11 +24,13 @@ jobs:
     steps:
     # - uses: actions/checkout@master
     - name: Setup .NET Core
-      #uses: actions/checkout@master
+      uses: actions/checkout@master
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 2.2.103  # ${{ matrix.dotnet }}  3.0.100
+        dotnet-version: '2.2.103'  # ${{ matrix.dotnet }}  3.0.100
         #description: 'SDK version to use. E.g. 3.0.100 ,2.2.103, 3.0.100-preview9-014004, 4.5.1 ,'
+    - name: Publishing the API Web
+    - run: dotnet publish -o appoutput /home/runner/work/GithubActionsCICD/GithubActionsCICD/Tweetbook.Sdk.Sample/Tweetbook.Sdk.Sample.csproj
         
         #- name: test variables
         #run: echo ${GITHUB_WORKSPACE}
@@ -52,7 +54,6 @@ jobs:
         
         #/home/runner/work/my-repo-name/my-repo-name
         
-    run: dotnet publish -o appoutput /home/runner/work/GithubActionsCICD/GithubActionsCICD/Tweetbook.Sdk.Sample/Tweetbook.Sdk.Sample.csproj
     
     #- name: Build with dotnet
       #run: dotnet build --configuration Release      
