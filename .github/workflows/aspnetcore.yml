@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build-and-test:
   
-    runs-on: windows-latest #ubuntu-18.04
+    runs-on: ubuntu-18.04 #windows-latest 
     #runs-on: ${{ matrix.os }}
     #strategy:
       #matrix:
@@ -29,7 +29,7 @@ jobs:
       # run: dotnet test /p:CollectCoverage=true
     - name: Publishing the API Web
       #run: dotnet publish --configuration Release --output ./Tweetbook-output ./Tweetbook/Tweetbook.csproj
-      run: dotnet publish --configuration Release --output ./tweetbook-output ./Tweetbook/Tweetbook.csproj
+      run: dotnet publish --configuration Release --output ./tweetbook-output #./Tweetbook/Tweetbook.csproj
 
     #- name: Deploy to Azure
       #uses: azure/appservice-actions/webapp@master
