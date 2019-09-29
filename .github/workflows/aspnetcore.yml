@@ -1,14 +1,15 @@
-name: ASP.NET Core CI 9-29-2019 7:29 AM # dotnet core - build
+name: ASP.NET Core CI 9-29-2019 7:31 AM # dotnet core - build
 
 on: [push]
 
 jobs:
   build-and-test:
-
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: 'windows-latest'
+  
+    runs-on: ubuntu-18.04
+    #runs-on: ${{ matrix.os }}
+    #strategy:
+      #matrix:
+        #os: 'windows-latest'
         #os: [ubuntu-latest, windows-latest, macOS-latest]
         # dotnet: [ '3.0.100' ,'2.2.103', '3.0.100-preview9-014004', '4.5.1' ] # SDK Version to use.      
         # name: Dotnet ${{ matrix.dotnet }} sample          
