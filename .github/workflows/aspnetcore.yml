@@ -1,4 +1,4 @@
-name: ASP.NET Core CI
+name: ASP.NET Core CI 9-29-2019 7:28 AM # dotnet core - build
 
 on: [push]
 
@@ -8,22 +8,41 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
-        dotnet: [ '3.0.100' ,'2.2.103', '3.0.100-preview9-014004', '4.5.1' ] # SDK Version to use.      
-        #name: Dotnet ${{ matrix.dotnet }} sample          
+        os: windows-latest
+        #os: [ubuntu-latest, windows-latest, macOS-latest]
+        # dotnet: [ '3.0.100' ,'2.2.103', '3.0.100-preview9-014004', '4.5.1' ] # SDK Version to use.      
+        # name: Dotnet ${{ matrix.dotnet }} sample          
         
     steps:
-    - uses: actions/checkout@master
+    # - uses: actions/checkout@master
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: ${{ matrix.dotnet }} # 3.0.100  
-        description: 'SDK version to use. E.g. 3.0.100 ,2.2.103, 3.0.100-preview9-014004, 4.5.1 ,'
+        dotnet-version: 3.0.100  # ${{ matrix.dotnet }}  
+        #description: 'SDK version to use. E.g. 3.0.100 ,2.2.103, 3.0.100-preview9-014004, 4.5.1 ,'
     - name: Build with dotnet
       run: dotnet build --configuration Release      
-    - name: Run tests
-      run: dotnet test --configuration Release
-    - name: Build NuGet Package
-      run: dotnet pack --configuration Release
-    - name: Deploy NuGet Package
-      run: dotnet nuget push ././Tweetbook/bin/Release/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+    - name: Run tests #Unit Tests
+      run: dotnet test /p:CollectCoverage=true --configuration Release  
+    # - name: Running MS Tests with Test Coverage
+      # run: dotnet test /p:CollectCoverage=true
+    - name: Publishing the API Web
+      run: dotnet publish --configuration Release --output ././Tweetbook-output ././Tweetbook/Tweetbook.csproj
+    #- name: Deploy to Azure
+      #uses: azure/appservice-actions/webapp@master
+      #with: 
+        #app-name: todo-api-app
+        #publish-profile: $
+        #package: /home/runner/work/todo/todo/src/TodoApi/todoapi-output/      
+      
+    #- name: Build NuGet Package
+      #run: dotnet pack --configuration Release
+    #- name: Deploy NuGet Package
+      #run: dotnet nuget push ./Tweetbook/bin/Release/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+
+    # - name: Build NuGet Package
+      # run: dotnet pack ./src/HtmlMinificationMiddleware/HtmlMinificationMiddleware.csproj --configuration Release -o NuGetPackages
+    # - name: Deploy NuGet Package
+      # run: dotnet nuget push ./src/HtmlMinificationMiddleware/NuGetPackages/HtmlMinificationMiddleware.2.2.1.nupkg -k $ -s https://api.nuget.org/v3/index.json
+ 
+   #![badge](https://action-badges.now.sh/anuraj/todo)
