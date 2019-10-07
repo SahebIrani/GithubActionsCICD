@@ -1,7 +1,10 @@
 name: ASP.NET Core CI 9-29-2019 09:40 AM 
 
-on: [push]
-
+#on: [push]
+on:
+  schedule:
+    - cron: 0 12 * * *
+      
 jobs:
 
   build-and-test:
