@@ -18,6 +18,25 @@ jobs:
     - name: Publishing the API Web
       run: dotnet publish /home/runner/work/GithubActionsCICD/GithubActionsCICD/Tweetbook/Tweetbook.csproj --configuration Release
 
+
+#jobs:
+# build_and_test:
+#   runs-on: $
+#  strategy:
+#      matrix:
+#        os: [macOS-latest, ubuntu-latest, windows-latest]
+#    steps:
+#    - name: Setup .NET Core
+#      uses: actions/setup-dotnet@v1.2.0
+#      with:
+#        dotnet-version: 3.0.100
+#      if: matrix.os == 'macOS-latest' || matrix.os == 'ubuntu-latest'
+#    - uses: actions/checkout@v1
+#    - name: Build with dotnet
+#      run: dotnet build ./src/Solution.sln --configuration Release
+#    - name: Test with dotnet
+#      run: dotnet test ./src/Solution.sln --configuration Release
+
 #name: ASP.NET Core CI 9-29-2019 8:45 AM # dotnet core - build
 
 #on: [push]
